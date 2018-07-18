@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SkinActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar3"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+        <TextView
+            android:id="@+id/toolbar_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:text="个性装扮"/>
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/tuijian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="官方推荐"
+        android:textColor="#000"
+        android:textSize="25dp"
+        android:layout_below="@id/toolbar3"
+        android:layout_marginTop="15dp"/>
+
+    <ImageView
+        android:id="@+id/redstyle"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/tuijian"
+        android:background="@drawable/shape"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <ImageView
+        android:id="@+id/bluestyle"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/tuijian"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/redstyle"
+        android:background="@drawable/shape2"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:text="官方红"
+        android:textColor="#000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/redstyle"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp"/>
+    <TextView
+        android:text="官方蓝"
+        android:textColor="#000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bluestyle"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="5dp"/>
+
+</RelativeLayout>

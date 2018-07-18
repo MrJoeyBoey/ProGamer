@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="?attr/colorPrimaryDark"
+    android:padding="10dp">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/icon_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@mipmap/acounticon"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#fff"
+            android:layout_centerInParent="true"/>
+        <TextView
+            android:id="@+id/logintip"
+            android:text="立即登录"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/icon_image"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"/>
+        <!--<TextView-->
+            <!--android:id="@+id/username"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_above="@+id/mail"-->
+            <!--android:text="Mr.JoeyBoey"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="14sp"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/mail"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="qinyuqiao@szba-mobile.com"-->
+            <!--android:textColor="#fff"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:textSize="14sp"/>-->
+
+</RelativeLayout>
