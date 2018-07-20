@@ -86,4 +86,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

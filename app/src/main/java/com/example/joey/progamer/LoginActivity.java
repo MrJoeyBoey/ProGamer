@@ -93,14 +93,14 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                int had=0;
                 List<Acount> acounts= LitePal.select("userName","passPort").find(Acount.class);
                 for(int i=0;i<acounts.size();i++){
 
                     Acount acount0=acounts.get(i);
 
                     if(text_user.getText().toString().equals(acount0.getUserName())){
-
+                        had++;
                         if(text_passport.getText().toString().equals(acount0.getPassPort())){
                             Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                             logined=true;
@@ -114,6 +114,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if(acounts.size()==0){
                     Toast.makeText(LoginActivity.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
+                }else if(had==0){
+                    Toast.makeText(LoginActivity.this,"该用户还没有被注册",Toast.LENGTH_SHORT).show();
                 }
 
             }
