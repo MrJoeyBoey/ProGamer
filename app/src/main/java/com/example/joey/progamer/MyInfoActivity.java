@@ -18,13 +18,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.litepal.LitePal;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyInfoActivity extends AppCompatActivity {
 
     private static final String TAG = "MyInfoActivity";
     
     private RecyclerView recyclerView;
     private String[] title={"头像","昵称","性别","生日","地区","学校"};
-    private String[] content={"Mr.Joey","男","1995-09-05","浙江 宁波","安徽科技学院"};
+    private ArrayList<String> content=new ArrayList<>();
+            //{"Mr.Joey","男","1995-09-05","浙江 宁波","安徽科技学院"};
     private int[] pic={R.drawable.head};
 
     @Override
@@ -37,6 +43,33 @@ public class MyInfoActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+
+    private void setContent(){
+        content.add(0,LoginActivity.username);
+        content.add(1,"未填写");
+        content.add(2,"未填写");
+        content.add(3,"未填写");
+        content.add(4,"未填写");
+        try {
+            Log.d(TAG, "看看运行没");
+            List<Acount> acounts= LitePal.select("userName","isMale","bornDate","area","school").find(Acount.class);
+            for(int i=0;i<acounts.size();i++) {
+                Acount acount0 = acounts.get(i);
+                if(LoginActivity.username.equals(acount0.getUserName())){
+                    if(acount0.isMale()){
+                        content.set(1,"男");
+                    }else {content.set(1,"女");}
+                    content.set(2,acount0.getBornDate());
+                    content.set(3,acount0.getArea());
+                    content.set(4,acount0.getSchool());
+                }
+            }
+        }catch (Exception e){
+
+        }
+
     }
 
     @Override
@@ -62,6 +95,8 @@ public class MyInfoActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.mipmap.returnicon);
         }
+
+        setContent();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView=(RecyclerView)findViewById(R.id.recyclerview_info);

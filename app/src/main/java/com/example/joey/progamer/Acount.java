@@ -9,7 +9,42 @@ public class Acount extends LitePalSupport{
     private String userName;
     private String passPort;
     private Drawable headIcon;
+    private boolean isMale;
+    private String bornDate;
+    private String area;
+    private String school;
 
+    public boolean isMale() {
+        return isMale;
+    }
+
+    public void setMale(boolean male) {
+        isMale = male;
+    }
+
+    public String getBornDate() {
+        return bornDate;
+    }
+
+    public void setBornDate(String bornDate) {
+        this.bornDate = bornDate;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
 
     public int getId() {
         return id;

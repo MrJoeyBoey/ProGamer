@@ -13,7 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.litepal.tablemanager.Connector;
+
+import java.util.ArrayList;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapter.MyViewHolder> {
 
@@ -22,9 +28,9 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
     private Context mContext;
     private String [] mTitle;
     private int [] mPic;
-    private String[] mContent;
+    private ArrayList<String> mContent;
 
-    public RecyclerviewAdapter(Context context,String[] title,int[] pic,String[] content){
+    public RecyclerviewAdapter(Context context,String[] title,int[] pic,ArrayList<String> content){
         mContext=context;
         mTitle=title;
         mPic=pic;
@@ -47,11 +53,37 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                     case 0:
                         Toast.makeText(mContext,"更换头像",Toast.LENGTH_SHORT).show();
                         break;
-                    case 1:
-                        Toast.makeText(mContext,"更换昵称",Toast.LENGTH_SHORT).show();
-                        break;
+//                    case 1:
+//                        Toast.makeText(mContext,"更换昵称",Toast.LENGTH_SHORT).show();
+//                        break;
                     case 2:
-                        Toast.makeText(mContext,"更换性别",Toast.LENGTH_SHORT).show();
+                        final String[] sexitem=new String[]{"男","女"};
+                        AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
+                        builder.setTitle("选择性别")
+                                .setItems(sexitem, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        switch (i){
+                                            case 0:
+                                                mContent.set(1,"男");
+                                                notifyItemChanged(2);
+                                                Connector.getDatabase();
+                                                Acount acount=new Acount();
+                                                acount.setMale(true);
+                                                acount.save();
+                                                break;
+                                            case 1:
+                                                mContent.set(1,"女");
+                                                notifyItemChanged(2);
+                                                Connector.getDatabase();
+                                                Acount acount1=new Acount();
+                                                acount1.setMale(false);
+                                                acount1.save();
+                                                break;
+                                        }
+                                    }
+                                });
+                        builder.create().show();
                         break;
                     case 3:
                         Toast.makeText(mContext,"更换生日",Toast.LENGTH_SHORT).show();
@@ -73,11 +105,13 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
     public void onBindViewHolder(@NonNull RecyclerviewAdapter.MyViewHolder holder, int position) {
 
             holder.info_id.setText(mTitle[position]);
+
             if (position == 0) {
                 holder.info_image.setBackgroundResource(mPic[position]);
             } else {
-                holder.info_detail.setText(mContent[position - 1]);
+                holder.info_detail.setText(mContent.get(position - 1));
             }
+
 
     }
 

@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
 
     static public boolean logined=false;
+    static public String username;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -80,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         Intent intent=getIntent();
-        boolean Login_Success=intent.getBooleanExtra("Login Success",false);
+        final boolean Login_Success=intent.getBooleanExtra("Login Success",false);
         if(Login_Success){
             Toast.makeText(this,"注册成功",Toast.LENGTH_SHORT).show();
         }
@@ -103,11 +104,15 @@ public class LoginActivity extends AppCompatActivity {
                         had++;
                         if(text_passport.getText().toString().equals(acount0.getPassPort())){
                             Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                            Intent intent1=new Intent(LoginActivity.this,MyInfoActivity.class);
+                            intent1.putExtra("username",text_user.getText());
                             logined=true;
+                            username=text_user.getText().toString();
                             startActivity(intent);
                             finish();
                         }else {
                             Toast.makeText(LoginActivity.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
+                            text_passport.setText("");
                         }
                     }
 

@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         if(LoginActivity.logined){
             UserInfo userInfo=new UserInfo();
             userInfo.setIconImage(getResources().getDrawable(R.drawable.head));
-            userInfo.setUserName("Mr.Joey");
+            userInfo.setUserName(LoginActivity.username);
 
             icon_image.setImageDrawable(userInfo.getIconImage());
             userName.setText(userInfo.getUserName());
