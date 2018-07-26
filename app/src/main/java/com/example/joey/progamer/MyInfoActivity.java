@@ -61,9 +61,15 @@ public class MyInfoActivity extends AppCompatActivity {
                     if(acount0.isMale()){
                         content.set(1,"男");
                     }else {content.set(1,"女");}
-                    content.set(2,acount0.getBornDate());
-                    content.set(3,acount0.getArea());
-                    content.set(4,acount0.getSchool());
+                    if(acount0.getBornDate()!=null){
+                        content.set(2,acount0.getBornDate());
+                    }
+                    if(acount0.getArea()!=null){
+                        content.set(3,acount0.getArea());
+                    }
+                    if(acount0.getSchool()!=null){
+                        content.set(4,acount0.getSchool());
+                    }
                 }
             }
         }catch (Exception e){

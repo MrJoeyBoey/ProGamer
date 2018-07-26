@@ -68,13 +68,13 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 List<Acount>acounts= LitePal.select("userName").find(Acount.class);
-                Log.d(TAG, "看看大小"+acounts.size());
+               // Log.d(TAG, "看看大小"+acounts.size());
 
                 for(int i=0;i<acounts.size();i++){
                     Acount acount0=acounts.get(i);
 
-                    Log.d(TAG, "看看数据"+acount0.getId());
-                    Log.d(TAG, "看看数据"+acount0.getUserName());
+//                    Log.d(TAG, "看看数据"+acount0.getId());
+//                    Log.d(TAG, "看看数据"+acount0.getUserName());
 
                     if(register_user.getText().toString().equals(acount0.getUserName())){
                         Toast.makeText(RegisterActivity.this,"该用户已被注册",Toast.LENGTH_SHORT).show();
@@ -89,10 +89,6 @@ public class RegisterActivity extends AppCompatActivity {
                 acount.setUserName(register_user.getText().toString());
                 acount.setPassPort(register_passport.getText().toString());
                 acount.save();
-//                Log.d(TAG, "看看数据2"+acount.getId());
-//                Log.d(TAG, "看看数据2"+acount.getUserName());
-//                Log.d(TAG, "看看数据2"+acount.getPassPort());
-//                Log.d(TAG, "看看数据2"+acount.isMale());
 
                 Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
                 intent.putExtra("Login Success",true);

@@ -67,18 +67,16 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                                             case 0:
                                                 mContent.set(1,"男");
                                                 notifyItemChanged(2);
-                                                Connector.getDatabase();
                                                 Acount acount=new Acount();
                                                 acount.setMale(true);
-                                                acount.save();
+                                                acount.updateAll("userName=?",LoginActivity.username);
                                                 break;
                                             case 1:
                                                 mContent.set(1,"女");
                                                 notifyItemChanged(2);
-                                                Connector.getDatabase();
                                                 Acount acount1=new Acount();
                                                 acount1.setMale(false);
-                                                acount1.save();
+                                                acount1.updateAll("userName=?",LoginActivity.username);
                                                 break;
                                         }
                                     }
