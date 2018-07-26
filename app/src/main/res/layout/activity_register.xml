@@ -30,24 +30,40 @@
         android:layout_marginRight="30dp"
         android:hint="用户名或手机"
         android:maxLength="15"
-        android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+        android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" />
+    <TextView
+        android:id="@+id/warning_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="用户名过短"
+        android:textColor="#ff0033"
+        android:layout_below="@+id/register_user"
+        android:layout_marginLeft="30dp"/>
     <EditText
         android:id="@+id/register_passport"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/register_user"
+        android:layout_below="@+id/warning_user"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="密码"
         android:maxLength="10"
         android:inputType="textPassword"/>
+    <TextView
+        android:id="@+id/warning_passport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="密码过短"
+        android:textColor="#ff0033"
+        android:layout_below="@+id/register_passport"
+        android:layout_marginLeft="30dp"/>
 
     <Button
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/register_passport"
+        android:layout_below="@+id/warning_passport"
         android:layout_margin="30dp"
         android:text="注 册"
         android:textColor="#fff"

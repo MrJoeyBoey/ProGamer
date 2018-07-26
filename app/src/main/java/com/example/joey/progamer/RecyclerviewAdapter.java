@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,12 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
             @Override
             public void onClick(View view) {
                 int position=holder.getAdapterPosition();
+
+                View view1=View.inflate(mContext,R.layout.infochange,null);
+                final EditText bornDateChange=(EditText)view1.findViewById(R.id.bornDateChange);
+                final EditText areaChange=(EditText)view1.findViewById(R.id.areaChange);
+                final EditText schoolChange=(EditText)view1.findViewById(R.id.schoolChange);
+
                 switch (position){
                     case 0:
                         Toast.makeText(mContext,"更换头像",Toast.LENGTH_SHORT).show();
@@ -84,13 +91,64 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                         builder.create().show();
                         break;
                     case 3:
-                        Toast.makeText(mContext,"更换生日",Toast.LENGTH_SHORT).show();
+                        areaChange.setVisibility(View.GONE);
+                        schoolChange.setVisibility(View.GONE);
+                        AlertDialog.Builder builder1=new AlertDialog.Builder(mContext);
+                        builder1.setTitle("填写生日日期")
+                                .setView(view1)
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        mContent.set(2,bornDateChange.getText().toString());
+                                        notifyItemChanged(3);
+                                        Acount acount2=new Acount();
+                                        acount2.setBornDate(bornDateChange.getText().toString());
+                                        acount2.updateAll("userName=?",LoginActivity.username);
+                                    }
+                                })
+                                .setNegativeButton("取消",null);
+                        builder1.create().show();
+                       // Toast.makeText(mContext,"更换生日",Toast.LENGTH_SHORT).show();
                         break;
                     case 4:
-                        Toast.makeText(mContext,"更换地区",Toast.LENGTH_SHORT).show();
+                        bornDateChange.setVisibility(View.GONE);
+                        schoolChange.setVisibility(View.GONE);
+                        AlertDialog.Builder builder2=new AlertDialog.Builder(mContext);
+                        builder2.setTitle("填写地区")
+                                .setView(view1)
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        mContent.set(3,areaChange.getText().toString());
+                                        notifyItemChanged(4);
+                                        Acount acount3=new Acount();
+                                        acount3.setArea(areaChange.getText().toString());
+                                        acount3.updateAll("userName=?",LoginActivity.username);
+                                    }
+                                })
+                                .setNegativeButton("取消",null);
+                        builder2.create().show();
+                        //Toast.makeText(mContext,"更换地区",Toast.LENGTH_SHORT).show();
                         break;
                     case 5:
-                        Toast.makeText(mContext,"更换学校",Toast.LENGTH_SHORT).show();
+                        areaChange.setVisibility(View.GONE);
+                        bornDateChange.setVisibility(View.GONE);
+                        AlertDialog.Builder builder3=new AlertDialog.Builder(mContext);
+                        builder3.setTitle("填写学校")
+                                .setView(view1)
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        mContent.set(4,schoolChange.getText().toString());
+                                        notifyItemChanged(5);
+                                        Acount acount4=new Acount();
+                                        acount4.setSchool(schoolChange.getText().toString());
+                                        acount4.updateAll("userName=?",LoginActivity.username);
+                                    }
+                                })
+                                .setNegativeButton("取消",null);
+                        builder3.create().show();
+                       // Toast.makeText(mContext,"更换学校",Toast.LENGTH_SHORT).show();
                         break;
                 }
             }

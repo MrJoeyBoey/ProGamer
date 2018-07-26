@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.litepal.LitePal;
@@ -62,37 +63,56 @@ public class RegisterActivity extends AppCompatActivity {
 
         final EditText register_user=(EditText)findViewById(R.id.register_user);
         final EditText register_passport=(EditText)findViewById(R.id.register_passport);
+        final TextView warning_user=(TextView)findViewById(R.id.warning_user);
+        final TextView wwarning_passport=(TextView)findViewById(R.id.warning_passport);
+        warning_user.setVisibility(View.GONE);
+        wwarning_passport.setVisibility(View.GONE);
         Button btn_register=(Button)findViewById(R.id.btn_register);
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                List<Acount>acounts= LitePal.select("userName").find(Acount.class);
-               // Log.d(TAG, "看看大小"+acounts.size());
+                if (register_user.getText().length() < 4) {
+                    warning_user.setVisibility(View.VISIBLE);
+                }
+                if (register_passport.getText().length() < 3) {
+                    wwarning_passport.setVisibility(View.VISIBLE);
+                }
+                if (register_user.getText().length() >= 4) {
+                    warning_user.setVisibility(View.GONE);
+                }
+                if (register_passport.getText().length() >= 3){
+                    wwarning_passport.setVisibility(View.GONE);
+                 }
 
-                for(int i=0;i<acounts.size();i++){
-                    Acount acount0=acounts.get(i);
+                if(register_user.getText().length() >= 4&&register_passport.getText().length() >= 3){
+                    List<Acount> acounts = LitePal.select("userName").find(Acount.class);
+                    // Log.d(TAG, "看看大小"+acounts.size());
+
+                    for (int i = 0; i < acounts.size(); i++) {
+                        Acount acount0 = acounts.get(i);
 
 //                    Log.d(TAG, "看看数据"+acount0.getId());
 //                    Log.d(TAG, "看看数据"+acount0.getUserName());
 
-                    if(register_user.getText().toString().equals(acount0.getUserName())){
-                        Toast.makeText(RegisterActivity.this,"该用户已被注册",Toast.LENGTH_SHORT).show();
-                        register_user.setText("");
-                        register_passport.setText("");
-                        return;
+                        if (register_user.getText().toString().equals(acount0.getUserName())) {
+                            Toast.makeText(RegisterActivity.this, "该用户已被注册", Toast.LENGTH_SHORT).show();
+                            register_user.setText("");
+                            register_passport.setText("");
+                            return;
+                        }
                     }
+
+                    Connector.getDatabase();
+                    Acount acount = new Acount();
+                    acount.setUserName(register_user.getText().toString());
+                    acount.setPassPort(register_passport.getText().toString());
+                    acount.save();
+
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    intent.putExtra("Login Success", true);
+                    startActivity(intent);
                 }
-
-                Connector.getDatabase();
-                Acount acount=new Acount();
-                acount.setUserName(register_user.getText().toString());
-                acount.setPassPort(register_passport.getText().toString());
-                acount.save();
-
-                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
-                intent.putExtra("Login Success",true);
-                startActivity(intent);
             }
         });
     }
