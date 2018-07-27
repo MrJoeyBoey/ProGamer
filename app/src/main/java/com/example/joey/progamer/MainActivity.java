@@ -10,12 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
+    private static final String TAG = "MainActivity";
 
     private Game[] games={
             new Game("超级马里奥：奥德赛",R.drawable.supermario,"SuperMario:Odyssey","10","Swich","奇幻 沙盒 3D","https://space.bilibili.com/43536/#/favlist?fid=1610906"),
@@ -104,15 +108,46 @@ public class MainActivity extends AppCompatActivity {
         CircleImageView icon_image=(CircleImageView)drawView.findViewById(R.id.icon_image);
         TextView userName=(TextView)drawView.findViewById(R.id.logintip);
 
+        icon_image.setImageResource(R.mipmap.acounticon);
         if(LoginActivity.logined){
-            UserInfo userInfo=new UserInfo();
-            userInfo.setIconImage(getResources().getDrawable(R.drawable.head));
-            userInfo.setUserName(LoginActivity.username);
+//            Acount acount1=new Acount();
+//            acount1.setHeadIconId(1);
+//            acount1.updateAll("userName=?",LoginActivity.username);
+            try {
+                List<Acount> acounts= LitePal.select("userName","headIconId").find(Acount.class);
+                for(int i=0;i<acounts.size();i++) {
+                    Acount acount = acounts.get(i);
+                    if(LoginActivity.username.equals(acount.getUserName())) {
+                        userName.setText(LoginActivity.username);
+                        switch (acount.getHeadIconId()){
+                            case 1:
+                                icon_image.setImageResource(R.drawable.head);
+                                break;
+                            case 2:
+                                icon_image.setImageResource(R.drawable.headicon2);
+                                break;
+                            case 3:
+                                icon_image.setImageResource(R.drawable.headicon3);
+                                break;
+                            case 4:
+                                icon_image.setImageResource(R.drawable.headicon4);
+                                break;
+                            case 5:
+                                icon_image.setImageResource(R.drawable.headicon5);
+                                break;
+                            case 6:
+                                icon_image.setImageResource(R.drawable.headicon6);
+                                break;
 
-            icon_image.setImageDrawable(userInfo.getIconImage());
-            userName.setText(userInfo.getUserName());
+                        }
+                    }
+                    }
+                   // Log.d(TAG, "看看ID"+acount.getHeadIconId());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }else {
-            icon_image.setImageDrawable(getResources().getDrawable(R.mipmap.acounticon));
             userName.setText("立即登录");
         }
         icon_image.setOnClickListener(new View.OnClickListener() {

@@ -33,7 +33,6 @@
                 <!--android:theme="@style/BlueTheme"-->
                 <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
 
-
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v7.widget.RecyclerView

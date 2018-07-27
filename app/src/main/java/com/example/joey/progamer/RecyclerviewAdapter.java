@@ -3,24 +3,17 @@ package com.example.joey.progamer;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.litepal.tablemanager.Connector;
-
 import java.util.ArrayList;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-
-import static android.support.constraint.Constraints.TAG;
 
 public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapter.MyViewHolder> {
 
@@ -28,13 +21,13 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
     private LayoutInflater layoutInflater;
     private Context mContext;
     private String [] mTitle;
-    private int [] mPic;
+    private int mHeadIconId;
     private ArrayList<String> mContent;
 
-    public RecyclerviewAdapter(Context context,String[] title,int[] pic,ArrayList<String> content){
+    public RecyclerviewAdapter(Context context,String[] title,int headIconId,ArrayList<String> content){
         mContext=context;
         mTitle=title;
-        mPic=pic;
+        mHeadIconId=headIconId;
         mContent=content;
         layoutInflater=LayoutInflater.from(context);
     }
@@ -43,7 +36,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
     @Override
     public RecyclerviewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View inflate = LayoutInflater.from(mContext).inflate(R.layout.recyclerview_item_info, parent,false);
+        final View inflate = LayoutInflater.from(mContext).inflate(R.layout.recyclerview_item_info, parent,false);
 
         final RecyclerviewAdapter.MyViewHolder holder=new RecyclerviewAdapter.MyViewHolder(inflate);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -58,11 +51,11 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
 
                 switch (position){
                     case 0:
-                        Toast.makeText(mContext,"更换头像",Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(mContext,HeadIconChooseActivity.class);
+                        intent.putExtra("HeadIconChanged",mHeadIconId);
+                        mContext.startActivity(intent);
+                     //   Toast.makeText(mContext,"更换头像",Toast.LENGTH_SHORT).show();
                         break;
-//                    case 1:
-//                        Toast.makeText(mContext,"更换昵称",Toast.LENGTH_SHORT).show();
-//                        break;
                     case 2:
                         final String[] sexitem=new String[]{"男","女"};
                         AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
@@ -163,9 +156,31 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
             holder.info_id.setText(mTitle[position]);
 
             if (position == 0) {
-                holder.info_image.setBackgroundResource(mPic[position]);
+                switch (mHeadIconId){
+                    case 1:
+                        holder.info_image.setImageResource(R.drawable.head);
+                        break;
+                    case 2:
+                        holder.info_image.setImageResource(R.drawable.headicon2);
+                        break;
+                    case 3:
+                        holder.info_image.setImageResource(R.drawable.headicon3);
+                        break;
+                    case 4:
+                        holder.info_image.setImageResource(R.drawable.headicon4);
+                        break;
+                    case 5:
+                        holder.info_image.setImageResource(R.drawable.headicon5);
+                        break;
+                    case 6:
+                        holder.info_image.setImageResource(R.drawable.headicon6);
+                        break;
+                }
             } else {
                 holder.info_detail.setText(mContent.get(position - 1));
+            }
+            if(position==1){
+                holder.right_arrow.setVisibility(View.GONE);
             }
 
 
@@ -181,11 +196,13 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView info_id,info_detail;
         CircleImageView info_image;
+        ImageView right_arrow;
         public MyViewHolder(View itemView) {
             super(itemView);
             info_id=(TextView)itemView.findViewById(R.id.info_id);
             info_detail=(TextView)itemView.findViewById(R.id.info_detail);
             info_image=(CircleImageView)itemView.findViewById(R.id.info_image);
+            right_arrow=(ImageView)itemView.findViewById(R.id.right_arrow);
         }
     }
 

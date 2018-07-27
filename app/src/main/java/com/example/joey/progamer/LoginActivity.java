@@ -117,9 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                 }
-                if(acounts.size()==0){
-                    Toast.makeText(LoginActivity.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
-                }else if(had==0){
+                    if(had==0){
                     Toast.makeText(LoginActivity.this,"该用户还没有被注册",Toast.LENGTH_SHORT).show();
                 }
 

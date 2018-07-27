@@ -30,8 +30,10 @@ public class MyInfoActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private String[] title={"头像","昵称","性别","生日","地区","学校"};
     private ArrayList<String> content=new ArrayList<>();
+
+    private int headIconId;
             //{"Mr.Joey","男","1995-09-05","浙江 宁波","安徽科技学院"};
-    private int[] pic={R.drawable.head};
+  //  private int[] pic={R.drawable.head};
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -53,11 +55,13 @@ public class MyInfoActivity extends AppCompatActivity {
         content.add(3,"未填写");
         content.add(4,"未填写");
         try {
-            Log.d(TAG, "看看运行没");
-            List<Acount> acounts= LitePal.select("userName","isMale","bornDate","area","school").find(Acount.class);
+            List<Acount> acounts= LitePal.select("userName","isMale","bornDate","area","school","headIconId").find(Acount.class);
+
             for(int i=0;i<acounts.size();i++) {
                 Acount acount0 = acounts.get(i);
+
                 if(LoginActivity.username.equals(acount0.getUserName())){
+                    headIconId=acount0.getHeadIconId();
                     if(acount0.isMale()){
                         content.set(1,"男");
                     }else {content.set(1,"女");}
@@ -73,7 +77,7 @@ public class MyInfoActivity extends AppCompatActivity {
                 }
             }
         }catch (Exception e){
-
+            e.printStackTrace();
         }
 
     }
@@ -102,12 +106,23 @@ public class MyInfoActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.mipmap.returnicon);
         }
 
+        //接收更换头像的数据
+        Intent intent=getIntent();
+        Boolean headIconChanged=intent.getBooleanExtra("更换头像",false);
+        headIconId=intent.getIntExtra("HeadIconId",1);
+        Log.d(TAG, "看看数据"+headIconChanged+headIconId);
+        //
+
+        if(headIconChanged){
+            Toast.makeText(this,"更换头像成功",Toast.LENGTH_SHORT).show();
+        }
+
         setContent();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView=(RecyclerView)findViewById(R.id.recyclerview_info);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new RecyclerviewAdapter(this,title,pic,content));
+        recyclerView.setAdapter(new RecyclerviewAdapter(this,title,headIconId,content));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         Button btn_loginout=(Button)findViewById(R.id.btn_loginout);

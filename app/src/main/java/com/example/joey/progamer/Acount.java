@@ -8,7 +8,7 @@ public class Acount extends LitePalSupport{
     private int id;
     private String userName;
     private String passPort;
-    private Drawable headIcon;
+    private int headIconId;
     private boolean isMale;
     private String bornDate;
     private String area;
@@ -70,11 +70,11 @@ public class Acount extends LitePalSupport{
         this.passPort = passPort;
     }
 
-    public Drawable getHeadIcon() {
-        return headIcon;
+    public int getHeadIconId() {
+        return headIconId;
     }
 
-    public void setHeadIcon(Drawable headIcon) {
-        this.headIcon = headIcon;
+    public void setHeadIconId(int headIconId) {
+        this.headIconId = headIconId;
     }
 }
