@@ -107,13 +107,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="#ccc"/>
-            <TextView
-                android:id="@+id/game_Strategy"
+
+            <!--<TextView-->
+                <!--android:id="@+id/game_Strategy"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:textSize="20sp"-->
+                <!--android:autoLink="all"/>-->
+            <Button
+                android:id="@+id/btn_stra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textSize="20sp"
-                android:autoLink="all"/>
+                android:background="?attr/colorPrimary"
+                android:textColor="#fff"
+                android:text="攻略视频"/>
 
         </LinearLayout>
 

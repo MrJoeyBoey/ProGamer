@@ -49,6 +49,15 @@ public class HeadIconChooseActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        switch (SkinActivity.myTheme){
+            case 0:
+                setTheme(R.style.BlueTheme);
+                break;
+            case 1:
+                setTheme(R.style.AppTheme);
+                break;
+        }
         setContentView(R.layout.activity_head_icon_choose);
 
         android.support.v7.widget.Toolbar toolbar_headIconChoose=findViewById(R.id.toolbar_headIconChoose);
