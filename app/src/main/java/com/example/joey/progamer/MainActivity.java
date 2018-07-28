@@ -1,7 +1,6 @@
 package com.example.joey.progamer;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -20,6 +19,7 @@ import android.widget.Toast;
 
 import org.litepal.LitePal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,27 +31,27 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Game>gameList=new ArrayList<>();
     private Game[] games={
-            new Game("超级马里奥：奥德赛",R.drawable.supermario,"SuperMario:Odyssey","10","Swich","奇幻 沙盒 3D","https://space.bilibili.com/43536/#/favlist?fid=1610906"),
-            new Game("刺客信条：起源",R.drawable.assassin,"Assassin's Creed:Origins ","9.0","PC/PS4/XBOX ONE","开放世界 动作角色扮演 冒险","https://www.bilibili.com/video/av16034019?from=search&seid=18113796428949774774"),
-            new Game("底特律：变人",R.drawable.detroy,"Detroit:Become Human","8.0","PS4","科幻 互动式电影","https://www.bilibili.com/video/av25233957?from=search&seid=8928858028714139919"),
-            new Game("古墓丽影9",R.drawable.gumuliying,"Tomb Raider","9.1","PC/PS3/XBOX 360","奇幻 生存","https://www.bilibili.com/video/av6553009?from=search&seid=16708481528234861305"),
-            new Game("怪物猎人：世界",R.drawable.monsterhunter,"Monster Hunter:World","9.6","PC/PS4/XBOX ONE","动作 冒险 多人 奇幻","https://www.bilibili.com/video/av19613105?from=search&seid=14258492953319388675"),
-            new Game("合金装备5：幻痛",R.drawable.hejinzhuangbei,"Metal Gear Solid V:The Phantom Pain","9.2","PC/PS4/XBOX","潜入暗杀 沙盒","https://www.bilibili.com/video/av6559000?from=search&seid=18396072576093707225" ),
-            new Game("黑暗之魂3",R.drawable.darksouls,"Dark Souls 3","9.4","PC/PS4/XBOX","奇幻 黑暗 动作角色扮演","https://www.bilibili.com/video/av4384128?from=search&seid=2502178149860962009" ),
-            new Game("饥荒",R.drawable.dontstarve,"Don't Starve","9.1","PC/PSV/WiiU PS4","生存 沙盒 独立游戏 冒险","https://www.bilibili.com/video/av12735950/?spm_id_from=333.338.recommend_report.1" ),
-            new Game("极品飞车20",R.drawable.nfs,"Need For Speed 20","7.5","PC/PS4/XBOX","赛车 竞技","https://www.bilibili.com/video/av16223062?from=search&seid=5016901606566321330" ),
-            new Game("精灵宝可梦：究极太阳/究极月亮",R.drawable.pokemeng,"Pokemon Ultra Sun/Moon","9.0","3DS","回合制 对战 收集","https://www.bilibili.com/video/av16925792?from=search&seid=13905837721019002023" ),
-            new Game("尼尔：机械纪元",R.drawable.nir,"NieR:Automata","8.9","PC/PS4/XBOX ONE","科幻 末世 美少女","https://www.bilibili.com/video/av10150031?from=search&seid=11831377836268364649"),
-            new Game("女神异闻录5",R.drawable.persona,"Persona 5","9.6","PS4/PS3","奇幻 回合制 角色扮演","https://www.bilibili.com/video/av9358230?from=search&seid=1770470183854496000"),
-            new Game("仁王",R.drawable.nioh,"Nioh","8.4","PC/PS4","动作角色扮演 日式 冒险","https://www.bilibili.com/video/av8749046?from=search&seid=14956812363154200244"),
-            new Game("塞尔达传说：荒野之息",R.drawable.zelda,"The Legend of Zelda:Breath of the Wild","10","Switch/WiiU","动作角色扮演 开放世界 冒险","https://www.bilibili.com/video/av9800429?from=search&seid=17654783124746259836"),
-            new Game("生化危机7",R.drawable.resident,"Resident Evil 7 Biohazard","7.7","PC/PS4/XBOX ONE/Switch","恐怖 第一人称射击 冒险","https://www.bilibili.com/video/av25174054"),
-            new Game("使命召唤14：二战",R.drawable.callofduty,"Call of Duty:WWII","8.0","PC/PS4/XBOX ONE","第一人称射击 历史","https://www.bilibili.com/video/av15965482?from=search&seid=5644938300841769069"),
-            new Game("侠盗猎车手5",R.drawable.gta,"Grand Theft Auto 5","9.8","PC/PS4/XBOX","开放世界 犯罪 动作","https://www.bilibili.com/video/av2295825?from=search&seid=12030211630006097404"),
-            new Game("血源诅咒",R.drawable.bloodborne,"BloodBorne","9.5","PS4","黑暗 克苏鲁 动作角色扮演","https://www.bilibili.com/video/av2184262?from=search&seid=8939949566497416065"),
-            new Game("异度之刃2",R.drawable.xneoblade,"XneoBlade 2","9.5","Switch","科幻 沙盒 角色扮演","https://www.bilibili.com/video/av17577699?from=search&seid=13418943913617253618"),
-            new Game("战神4",R.drawable.godofwar,"God of War 4","10","PS4","动作 ","https://www.bilibili.com/video/av22338596?from=search&seid=3300672328697779466"),
-            new Game("最终幻想15",R.drawable.ff,"Final Fantasy 15","8.4","PC/PS4/XBOX","动作角色扮演 奇幻 冒险","https://www.bilibili.com/video/av7367859?from=search&seid=2214592691810653557")
+            new Game(1,"超级马里奥：奥德赛",R.drawable.supermario,"SuperMario:Odyssey","10","Swich","奇幻 沙盒 3D","https://space.bilibili.com/43536/#/favlist?fid=1610906"),
+            new Game(2,"刺客信条：起源",R.drawable.assassin,"Assassin's Creed:Origins ","9.0","PC/PS4/XBOX ONE","开放世界 动作角色扮演 冒险","https://www.bilibili.com/video/av16034019?from=search&seid=18113796428949774774"),
+            new Game(3,"底特律：变人",R.drawable.detroy,"Detroit:Become Human","8.0","PS4","科幻 互动式电影","https://www.bilibili.com/video/av25233957?from=search&seid=8928858028714139919"),
+            new Game(4,"古墓丽影9",R.drawable.gumuliying,"Tomb Raider","9.1","PC/PS3/XBOX 360","奇幻 生存","https://www.bilibili.com/video/av6553009?from=search&seid=16708481528234861305"),
+            new Game(5,"怪物猎人：世界",R.drawable.monsterhunter,"Monster Hunter:World","9.6","PC/PS4/XBOX ONE","动作 冒险 多人 奇幻","https://www.bilibili.com/video/av19613105?from=search&seid=14258492953319388675"),
+            new Game(6,"合金装备5：幻痛",R.drawable.hejinzhuangbei,"Metal Gear Solid V:The Phantom Pain","9.2","PC/PS4/XBOX","潜入暗杀 沙盒","https://www.bilibili.com/video/av6559000?from=search&seid=18396072576093707225" ),
+            new Game(7,"黑暗之魂3",R.drawable.darksouls,"Dark Souls 3","9.4","PC/PS4/XBOX","奇幻 黑暗 动作角色扮演","https://www.bilibili.com/video/av4384128?from=search&seid=2502178149860962009" ),
+            new Game(8,"饥荒",R.drawable.dontstarve,"Don't Starve","9.1","PC/PSV/WiiU PS4","生存 沙盒 独立游戏 冒险","https://www.bilibili.com/video/av12735950/?spm_id_from=333.338.recommend_report.1" ),
+            new Game(9,"极品飞车20",R.drawable.nfs,"Need For Speed 20","7.5","PC/PS4/XBOX","赛车 竞技","https://www.bilibili.com/video/av16223062?from=search&seid=5016901606566321330" ),
+            new Game(10,"精灵宝可梦：究极太阳/究极月亮",R.drawable.pokemeng,"Pokemon Ultra Sun/Moon","9.0","3DS","回合制 对战 收集","https://www.bilibili.com/video/av16925792?from=search&seid=13905837721019002023" ),
+            new Game(11,"尼尔：机械纪元",R.drawable.nir,"NieR:Automata","8.9","PC/PS4/XBOX ONE","科幻 末世 美少女","https://www.bilibili.com/video/av10150031?from=search&seid=11831377836268364649"),
+            new Game(12,"女神异闻录5",R.drawable.persona,"Persona 5","9.6","PS4/PS3","奇幻 回合制 角色扮演","https://www.bilibili.com/video/av9358230?from=search&seid=1770470183854496000"),
+            new Game(13,"仁王",R.drawable.nioh,"Nioh","8.4","PC/PS4","动作角色扮演 日式 冒险","https://www.bilibili.com/video/av8749046?from=search&seid=14956812363154200244"),
+            new Game(14,"塞尔达传说：荒野之息",R.drawable.zelda,"The Legend of Zelda:Breath of the Wild","10","Switch/WiiU","动作角色扮演 开放世界 冒险","https://www.bilibili.com/video/av9800429?from=search&seid=17654783124746259836"),
+            new Game(15,"生化危机7",R.drawable.resident,"Resident Evil 7 Biohazard","7.7","PC/PS4/XBOX ONE/Switch","恐怖 第一人称射击 冒险","https://www.bilibili.com/video/av25174054"),
+            new Game(16,"使命召唤14：二战",R.drawable.callofduty,"Call of Duty:WWII","8.0","PC/PS4/XBOX ONE","第一人称射击 历史","https://www.bilibili.com/video/av15965482?from=search&seid=5644938300841769069"),
+            new Game(17,"侠盗猎车手5",R.drawable.gta,"Grand Theft Auto 5","9.8","PC/PS4/XBOX","开放世界 犯罪 动作","https://www.bilibili.com/video/av2295825?from=search&seid=12030211630006097404"),
+            new Game(18,"血源诅咒",R.drawable.bloodborne,"BloodBorne","9.5","PS4","黑暗 克苏鲁 动作角色扮演","https://www.bilibili.com/video/av2184262?from=search&seid=8939949566497416065"),
+            new Game(19,"异度之刃2",R.drawable.xneoblade,"XneoBlade 2","9.5","Switch","科幻 沙盒 角色扮演","https://www.bilibili.com/video/av17577699?from=search&seid=13418943913617253618"),
+            new Game(20,"战神4",R.drawable.godofwar,"God of War 4","10","PS4","动作 ","https://www.bilibili.com/video/av22338596?from=search&seid=3300672328697779466"),
+            new Game(21,"最终幻想15",R.drawable.ff,"Final Fantasy 15","8.4","PC/PS4/XBOX","动作角色扮演 奇幻 冒险","https://www.bilibili.com/video/av7367859?from=search&seid=2214592691810653557")
     };
     private GameAdapter gameAdapter;
 
@@ -178,6 +178,17 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent3);
                         finish();
                         break;
+                    case R.id.nav_follow:
+                        if(LoginActivity.logined){
+                            Intent intent4=new Intent(MainActivity.this,MyColectActivity.class);
+                            intent4.putExtra("GamesList", (Serializable) gameList);
+                            startActivity(intent4);
+                            finish();
+                        }else {
+                            Toast.makeText(MainActivity.this,"请先登录",Toast.LENGTH_SHORT).show();
+                        }
+
+                        break;
                 }
                 return true;
             }
@@ -193,11 +204,7 @@ public class MainActivity extends AppCompatActivity {
         gameAdapter=new GameAdapter(gameList);
         recyclerView.setAdapter(gameAdapter);
 
-
     }
-
-
-
 
     @Override
     public void onBackPressed() {

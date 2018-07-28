@@ -110,7 +110,6 @@ public class MyInfoActivity extends AppCompatActivity {
         Intent intent=getIntent();
         Boolean headIconChanged=intent.getBooleanExtra("更换头像",false);
         headIconId=intent.getIntExtra("HeadIconId",1);
-        Log.d(TAG, "看看数据"+headIconChanged+headIconId);
         //
 
         if(headIconChanged){

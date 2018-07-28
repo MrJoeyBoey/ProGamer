@@ -4,6 +4,8 @@ import android.graphics.drawable.Drawable;
 
 import org.litepal.crud.LitePalSupport;
 
+import java.util.List;
+
 public class Acount extends LitePalSupport{
     private int id;
     private String userName;
@@ -13,6 +15,15 @@ public class Acount extends LitePalSupport{
     private String bornDate;
     private String area;
     private String school;
+    private List<Integer> gameColectedId;
+
+    public List<Integer> getGameColectedId() {
+        return gameColectedId;
+    }
+
+    public void setGameColectedId(List<Integer> gameColectedId) {
+        this.gameColectedId = gameColectedId;
+    }
 
     public boolean isMale() {
         return isMale;
