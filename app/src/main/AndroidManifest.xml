@@ -27,7 +27,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".HeadIconChooseActivity" />
         <activity android:name=".GameVideoActivity" />
-        <activity android:name=".MyColectActivity"></activity>
+        <activity android:name=".MyColectActivity" />
+        <activity android:name=".AboutMeActivity"></activity>
     </application>
 
 </manifest>

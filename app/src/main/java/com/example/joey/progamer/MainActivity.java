@@ -26,7 +26,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
-    private DrawerLayout drawerLayout;
+    public static DrawerLayout drawerLayout;
     private static final String TAG = "MainActivity";
 
     public static List<Game>gameList=new ArrayList<>();
@@ -89,9 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        final Intent intent=new Intent(MainActivity.this,LoginActivity.class);
-        final Intent intent1=new Intent(MainActivity.this,MyInfoActivity.class);
-
         android.support.v7.widget.Toolbar toolbar=findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -152,9 +149,11 @@ public class MainActivity extends AppCompatActivity {
                 switch (view.getId()){
                     case R.id.icon_image:
                         if(LoginActivity.logined){
+                            Intent intent1=new Intent(MainActivity.this,MyInfoActivity.class);
                             startActivity(intent1);
                             finish();
                         }else {
+                            Intent intent=new Intent(MainActivity.this,LoginActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -183,11 +182,13 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent4=new Intent(MainActivity.this,MyColectActivity.class);
                             intent4.putExtra("GamesList", (Serializable) gameList);
                             startActivity(intent4);
-                            finish();
                         }else {
                             Toast.makeText(MainActivity.this,"请先登录",Toast.LENGTH_SHORT).show();
                         }
-
+                        break;
+                    case R.id.nav_about:
+                        Intent intent5=new Intent(MainActivity.this,AboutMeActivity.class);
+                        startActivity(intent5);
                         break;
                 }
                 return true;

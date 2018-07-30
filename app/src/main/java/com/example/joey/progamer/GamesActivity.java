@@ -150,15 +150,11 @@ public class GamesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent=getIntent();
         String context=intent.getStringExtra("上文");
-        MainActivity mainActivity=new MainActivity();
         switch (item.getItemId()){
             case android.R.id.home:
                 if(context.contains("com.example.joey.progamer.MyColectActivity")){
                     Intent intent1=new Intent(GamesActivity.this,MyColectActivity.class);
                     intent1.putExtra("GamesList", (Serializable) MainActivity.gameList);
-                    startActivity(intent1);
-                }else if(context.contains("com.example.joey.progamer.MainActivity")){
-                    Intent intent1=new Intent(GamesActivity.this,MainActivity.class);
                     startActivity(intent1);
                 }
                 finish();

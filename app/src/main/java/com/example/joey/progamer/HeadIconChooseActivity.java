@@ -26,8 +26,6 @@ public class HeadIconChooseActivity extends AppCompatActivity implements View.On
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                Intent intent=new Intent(HeadIconChooseActivity.this,MyInfoActivity.class);
-                startActivity(intent);
                 finish();
                 break;
             case R.id.headIconSave:
