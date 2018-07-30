@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchActivity"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:textColor="#fff"
+            android:hint="请输入搜索内容"
+            android:textColorHint="#fff"
+            android:drawableLeft="@mipmap/search2icon"
+            android:theme="@style/MyEditText"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"/>
+        <TextView
+            android:id="@+id/cancel_search"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_weight="6"
+            android:text="取消"
+            android:textSize="16sp"
+            android:textColor="#fff"
+            android:layout_marginLeft="8dp"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -65,6 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText register_passport=(EditText)findViewById(R.id.register_passport);
         final TextView warning_user=(TextView)findViewById(R.id.warning_user);
         final TextView wwarning_passport=(TextView)findViewById(R.id.warning_passport);
+
         warning_user.setVisibility(View.GONE);
         wwarning_passport.setVisibility(View.GONE);
         Button btn_register=(Button)findViewById(R.id.btn_register);
@@ -87,14 +90,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(register_user.getText().length() >= 4&&register_passport.getText().length() >= 3){
                     List<Acount> acounts = LitePal.select("userName").find(Acount.class);
-                    // Log.d(TAG, "看看大小"+acounts.size());
-
                     for (int i = 0; i < acounts.size(); i++) {
                         Acount acount0 = acounts.get(i);
-
-//                    Log.d(TAG, "看看数据"+acount0.getId());
-//                    Log.d(TAG, "看看数据"+acount0.getUserName());
-
                         if (register_user.getText().toString().equals(acount0.getUserName())) {
                             Toast.makeText(RegisterActivity.this, "该用户已被注册", Toast.LENGTH_SHORT).show();
                             register_user.setText("");

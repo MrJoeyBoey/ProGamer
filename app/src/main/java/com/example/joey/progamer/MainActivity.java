@@ -68,7 +68,9 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(Gravity.START);
                 break;
             case R.id.search_game:
-                Toast.makeText(this,"搜索游戏",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(MainActivity.this,SearchActivity.class);
+                startActivity(intent);
+//                Toast.makeText(this,"搜索游戏",Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
