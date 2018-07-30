@@ -172,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_setting:
                         Intent intent2=new Intent(MainActivity.this,SettingActivity.class);
                         startActivity(intent2);
-                        finish();
                         break;
                     case R.id.nav_skin:
                         Intent intent3=new Intent(MainActivity.this,SkinActivity.class);

@@ -20,14 +20,13 @@ public class SettingActivity extends AppCompatActivity {
 
 
     private RecyclerView recyclerView;
-    private String[] settingTitle={"字体大小"};
+    private String[] settingTitle={"不","知","道","该","设","置","啥"};
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                Intent intent=new Intent(SettingActivity.this,MainActivity.class);
-                startActivity(intent);
+                MainActivity.drawerLayout.closeDrawers();
                 finish();
                 break;
         }
@@ -68,8 +67,7 @@ public class SettingActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent=new Intent(SettingActivity.this,MainActivity.class);
-        startActivity(intent);
-        finish();
+        MainActivity.drawerLayout.closeDrawers();
+        super.onBackPressed();
     }
 }

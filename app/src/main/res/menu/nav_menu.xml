@@ -11,10 +11,10 @@
             android:id="@+id/nav_follow"
             android:title="我的关注"
             android:icon="@mipmap/followicon"/>
-        <item
-            android:id="@+id/nav_news"
-            android:title="我的消息"
-            android:icon="@mipmap/messageicon"/>
+        <!--<item-->
+            <!--android:id="@+id/nav_news"-->
+            <!--android:title="我的消息"-->
+            <!--android:icon="@mipmap/messageicon"/>-->
         <!--<item-->
             <!--android:id="@+id/nav_collect"-->
             <!--android:title="我的收藏"-->
