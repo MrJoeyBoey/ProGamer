@@ -14,7 +14,7 @@ public class AboutMeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                MainActivity.drawerLayout.closeDrawers();
+
                 finish();
                 return true;
         }
@@ -49,7 +49,7 @@ public class AboutMeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        MainActivity.drawerLayout.closeDrawers();
+
         finish();
     }
 }

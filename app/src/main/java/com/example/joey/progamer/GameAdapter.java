@@ -1,5 +1,6 @@
 package com.example.joey.progamer;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -64,6 +65,14 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
                 intent.putExtra("GameVideo",games.getGameVideo());
                 intent.putExtra("上文",mContext.toString());
                 mContext.startActivity(intent);
+
+                if(mContext.toString().contains("com.example.joey.progamer.MyColectActivity")){
+                    if (Activity.class.isInstance(mContext)) {
+                        Activity activity = (Activity)mContext;
+                        activity.finish();
+                    }
+                }
+
             }
         });
 

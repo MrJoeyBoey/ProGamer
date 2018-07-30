@@ -1,5 +1,6 @@
 package com.example.joey.progamer;
 
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -28,7 +29,8 @@ public class GamesActivity extends AppCompatActivity {
     private static final String TAG = "GamesActivity";
     
     private boolean colected=false;
-    public List<Integer>gamesId=new ArrayList<>();
+    private List<Integer>gamesId=new ArrayList<>();
+    private List<Game>mGameList=MainActivity.sGameList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,12 +136,15 @@ public class GamesActivity extends AppCompatActivity {
                         }
                         colected = false;
                     }
+                    if(gamesId.size()==0){
+                        acount.setToDefault("gameColectedId");
+                    }else {
                         acount.setGameColectedId(gamesId);
+                    }
                         acount.updateAll("userName=?", LoginActivity.username);
                 }else {
                     Toast.makeText(GamesActivity.this,"请登录",Toast.LENGTH_SHORT).show();
                 }
-
 
             }
         });
@@ -154,7 +159,7 @@ public class GamesActivity extends AppCompatActivity {
             case android.R.id.home:
                 if(context.contains("com.example.joey.progamer.MyColectActivity")){
                     Intent intent1=new Intent(GamesActivity.this,MyColectActivity.class);
-                    intent1.putExtra("GamesList", (Serializable) MainActivity.gameList);
+                    intent1.putExtra("GamesList", (Serializable)mGameList);
                     startActivity(intent1);
                 }
                 finish();

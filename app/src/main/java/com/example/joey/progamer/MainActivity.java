@@ -26,10 +26,12 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
-    public static DrawerLayout drawerLayout;
+    public  DrawerLayout drawerLayout;
     private static final String TAG = "MainActivity";
 
-    public static List<Game>gameList=new ArrayList<>();
+    private List<Game>gameList=new ArrayList<>();
+    public static List<Game>sGameList=new ArrayList<>();
+
     private Game[] games={
             new Game(1,"超级马里奥：奥德赛",R.drawable.supermario,"SuperMario:Odyssey","10","Swich","奇幻 沙盒 3D","https://space.bilibili.com/43536/#/favlist?fid=1610906"),
             new Game(2,"刺客信条：起源",R.drawable.assassin,"Assassin's Creed:Origins ","9.0","PC/PS4/XBOX ONE","开放世界 动作角色扮演 冒险","https://www.bilibili.com/video/av16034019?from=search&seid=18113796428949774774"),
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.search_game:
                 Intent intent=new Intent(MainActivity.this,SearchActivity.class);
                 startActivity(intent);
+                drawerLayout.closeDrawers();
 //                Toast.makeText(this,"搜索游戏",Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -192,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent5);
                         break;
                 }
+                drawerLayout.closeDrawers();
                 return true;
             }
         });
@@ -203,9 +207,9 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0;i<games.length;i++){
             gameList.add(games[i]);
         }
+        sGameList=gameList;
         gameAdapter=new GameAdapter(gameList);
         recyclerView.setAdapter(gameAdapter);
-
     }
 
     @Override

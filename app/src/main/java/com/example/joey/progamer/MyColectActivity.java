@@ -24,8 +24,6 @@ public class MyColectActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                Intent intent=new Intent(MyColectActivity.this,MainActivity.class);
-                startActivity(intent);
                 finish();
                 return true;
         }

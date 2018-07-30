@@ -1,5 +1,6 @@
 package com.example.joey.progamer;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class SearchActivity extends AppCompatActivity {
     private GameAdapter gameAdapter;
     private List<Game>games=new ArrayList<>();
     private String lastTextView=null;
+    private List<Game>mGameList=MainActivity.sGameList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,8 @@ public class SearchActivity extends AppCompatActivity {
         tv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent=new Intent(SearchActivity.this,MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -63,9 +67,9 @@ public class SearchActivity extends AppCompatActivity {
                     if(lastTextView!=textView.getText()){
                         games.clear();
                     }
-                    for(int j=0;j<MainActivity.gameList.size();j++){
-                        if(MainActivity.gameList.get(j).getGameName().contains(textView.getText())&&textView.getText().length()!=0){
-                            games.add(MainActivity.gameList.get(j));
+                    for(int j=0;j<mGameList.size();j++){
+                        if(mGameList.get(j).getGameName().contains(textView.getText())&&textView.getText().length()!=0){
+                            games.add(mGameList.get(j));
                         }
                     }
 
@@ -84,6 +88,5 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 }
