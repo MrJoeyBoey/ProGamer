@@ -22,6 +22,14 @@ public class GameVideoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        switch (SkinActivity.myTheme){
+            case 0:
+                setTheme(R.style.BlueTheme);
+                break;
+            case 1:
+                setTheme(R.style.AppTheme);
+                break;
+        }
         setContentView(R.layout.activity_game_video);
 
         android.support.v7.widget.Toolbar toolbar=findViewById(R.id.toolbar_gamevideo);
