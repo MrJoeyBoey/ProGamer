@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,12 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
+    private static final String TAG = "GameAdapter";
+    
     private Context mContext;
     private List<Game> mGameList;
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         ImageView gameImage;
         TextView gameName;
@@ -34,7 +37,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
     }
 
     public GameAdapter(List<Game> gameList){
-
         mGameList=gameList;
     }
 
@@ -52,6 +54,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
                 int position=viewHolder.getAdapterPosition();
                 Game games=mGameList.get(position);
                 Intent intent=new Intent(mContext,GamesActivity.class);
+                intent.putExtra("GameId",games.getGameId());
                 intent.putExtra("GameName",games.getGameName());
                 intent.putExtra("GameCover",games.getImageId());
                 intent.putExtra("EnglishName",games.getEnglishName());
@@ -59,6 +62,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
                 intent.putExtra("Platform",games.getPlatform());
                 intent.putExtra("GameType",games.getGameType());
                 intent.putExtra("GameVideo",games.getGameVideo());
+                intent.putExtra("上文",mContext.toString());
                 mContext.startActivity(intent);
             }
         });

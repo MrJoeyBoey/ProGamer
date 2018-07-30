@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private static final String TAG = "MainActivity";
 
-    private List<Game>gameList=new ArrayList<>();
+    public static List<Game>gameList=new ArrayList<>();
     private Game[] games={
             new Game(1,"超级马里奥：奥德赛",R.drawable.supermario,"SuperMario:Odyssey","10","Swich","奇幻 沙盒 3D","https://space.bilibili.com/43536/#/favlist?fid=1610906"),
             new Game(2,"刺客信条：起源",R.drawable.assassin,"Assassin's Creed:Origins ","9.0","PC/PS4/XBOX ONE","开放世界 动作角色扮演 冒险","https://www.bilibili.com/video/av16034019?from=search&seid=18113796428949774774"),

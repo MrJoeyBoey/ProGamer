@@ -1,6 +1,9 @@
 package com.example.joey.progamer;
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable {
+    private int gameId;
     private String gameName;
     private int imageId;
     private String englishName;
@@ -9,7 +12,8 @@ public class Game {
     private String gameType;
     private String gameVideo;
 
-    public Game(String gameName,int imageId,String englishName,String grade,String platform,String gameType,String gameVideo){
+    public Game(int gameId,String gameName,int imageId,String englishName,String grade,String platform,String gameType,String gameVideo){
+        this.gameId=gameId;
         this.gameName=gameName;
         this.imageId=imageId;
         this.englishName=englishName;
@@ -17,6 +21,10 @@ public class Game {
         this.platform=platform;
         this.gameType=gameType;
         this.gameVideo=gameVideo;
+    }
+
+    public int getGameId() {
+        return gameId;
     }
 
     public String getGameName() {

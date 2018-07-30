@@ -1,20 +1,34 @@
 package com.example.joey.progamer;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 
+import org.litepal.LitePal;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 public class GamesActivity extends AppCompatActivity {
+
+    private static final String TAG = "GamesActivity";
+    
+    private boolean colected=false;
+    public List<Integer>gamesId=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +45,8 @@ public class GamesActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_games);
 
-        final Intent intent=getIntent();
+        Intent intent=getIntent();
+        final int gameId=intent.getIntExtra("GameId",0);
         String gameName=intent.getStringExtra("GameName");
         int gameImageID=intent.getIntExtra("GameCover",0);
         String englishName=intent.getStringExtra("EnglishName");
@@ -48,6 +63,7 @@ public class GamesActivity extends AppCompatActivity {
         TextView gameInfo=(TextView)findViewById(R.id.game_info);
         //TextView game_Strategy=(TextView)findViewById(R.id.game_Strategy);
         Button btn_stra=(Button)findViewById(R.id.btn_stra);
+        final ImageView btn_colect=(ImageView)findViewById(R.id.btn_colect);
 
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -67,6 +83,30 @@ public class GamesActivity extends AppCompatActivity {
         gameInfo.append("\n\n");
         gameInfo.append(gameType);
    //     game_Strategy.setText(gameVideo);
+        btn_colect.setImageResource(R.mipmap.colecticon);
+
+        try {
+            List<Acount> acounts = LitePal.select("userName", "gameColectedId").find(Acount.class);
+            for (int i = 0; i < acounts.size(); i++) {
+                Acount acount = acounts.get(i);
+                if (LoginActivity.username.equals(acount.getUserName())) {
+                    if(acount.getGameColectedId()!=null){
+                        gamesId=acount.getGameColectedId();
+                    }
+                    for(int j=0;j<acount.getGameColectedId().size();j++){
+
+                       if(acount.getGameColectedId().get(j)==gameId){
+
+                           btn_colect.setImageResource(R.mipmap.colectedicon);
+                           colected=true;
+                       }
+                    }
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 
         btn_stra.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,13 +116,51 @@ public class GamesActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+        btn_colect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(LoginActivity.logined){
+                    Acount acount=new Acount();
+                    if(!colected){
+                        btn_colect.setImageResource(R.mipmap.colectedicon);
+                        gamesId.add(gameId);
+                        colected=true;
+                    }else {
+                        btn_colect.setImageResource(R.mipmap.colecticon);
+                        for (int i = 0; i < gamesId.size(); i++) {
+                            if (gamesId.get(i) == gameId) {
+                                gamesId.remove(i);
+                            }
+                        }
+                        colected = false;
+                    }
+                        acount.setGameColectedId(gamesId);
+                        acount.updateAll("userName=?", LoginActivity.username);
+                }else {
+                    Toast.makeText(GamesActivity.this,"请登录",Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent=getIntent();
+        String context=intent.getStringExtra("上文");
+        MainActivity mainActivity=new MainActivity();
         switch (item.getItemId()){
             case android.R.id.home:
+                if(context.contains("com.example.joey.progamer.MyColectActivity")){
+                    Intent intent1=new Intent(GamesActivity.this,MyColectActivity.class);
+                    intent1.putExtra("GamesList", (Serializable) MainActivity.gameList);
+                    startActivity(intent1);
+                }else if(context.contains("com.example.joey.progamer.MainActivity")){
+                    Intent intent1=new Intent(GamesActivity.this,MainActivity.class);
+                    startActivity(intent1);
+                }
                 finish();
                 return true;
         }

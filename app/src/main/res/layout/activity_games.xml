@@ -115,14 +115,30 @@
                 <!--android:layout_margin="10dp"-->
                 <!--android:textSize="20sp"-->
                 <!--android:autoLink="all"/>-->
-            <Button
-                android:id="@+id/btn_stra"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="?attr/colorPrimary"
-                android:textColor="#fff"
-                android:text="攻略视频"/>
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_stra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="?attr/colorPrimary"
+                    android:textColor="#fff"
+                    android:text="攻略视频"/>
+
+                <ImageView
+                    android:id="@+id/btn_colect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@mipmap/colecticon"/>
+            </RelativeLayout>
+
+
 
         </LinearLayout>
 
