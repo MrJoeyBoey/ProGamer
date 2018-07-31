@@ -26,8 +26,8 @@ public class SettingActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-
                 finish();
+                overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
                 break;
         }
         return true;
@@ -67,7 +67,7 @@ public class SettingActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
         super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
     }
 }

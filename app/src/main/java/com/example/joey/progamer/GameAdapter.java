@@ -64,14 +64,13 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
                 intent.putExtra("GameType",games.getGameType());
                 intent.putExtra("GameVideo",games.getGameVideo());
                 intent.putExtra("上文",mContext.toString());
-                mContext.startActivity(intent);
-
+               // mContext.startActivity(intent);
+                Activity activity = (Activity)mContext;
+                activity.startActivity(intent);
                 if(mContext.toString().contains("com.example.joey.progamer.MyColectActivity")){
-                    if (Activity.class.isInstance(mContext)) {
-                        Activity activity = (Activity)mContext;
-                        activity.finish();
-                    }
+                    activity.finish();
                 }
+                activity.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
 
             }
         });

@@ -33,6 +33,7 @@ public class SkinActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent=new Intent(SkinActivity.this,MainActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
                 break;
         }
         return true;
@@ -100,5 +101,6 @@ public class SkinActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent=new Intent(SkinActivity.this,MainActivity.class);
         startActivity(intent);
         finish();
+        overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
     }
 }

@@ -25,6 +25,7 @@ public class MyColectActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
                 finish();
+                overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
                 return true;
         }
         return super.onOptionsItemSelected(item);

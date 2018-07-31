@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.search_game:
                 Intent intent=new Intent(MainActivity.this,SearchActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
                 drawerLayout.closeDrawers();
 //                Toast.makeText(this,"搜索游戏",Toast.LENGTH_SHORT).show();
                 break;
@@ -162,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         }
+                        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
                         drawerLayout.closeDrawers();
                         break;
                 }
@@ -195,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent5);
                         break;
                 }
+                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
                 drawerLayout.closeDrawers();
                 return true;
             }

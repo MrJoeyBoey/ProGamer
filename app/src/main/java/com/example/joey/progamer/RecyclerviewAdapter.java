@@ -1,5 +1,6 @@
 package com.example.joey.progamer;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -53,7 +54,12 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                     case 0:
                         Intent intent=new Intent(mContext,HeadIconChooseActivity.class);
                         intent.putExtra("HeadIconChanged",mHeadIconId);
-                        mContext.startActivity(intent);
+
+                        if (Activity.class.isInstance(mContext)) {
+                            Activity activity = (Activity)mContext;
+                            mContext.startActivity(intent);
+                            activity.overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
+                        }
                      //   Toast.makeText(mContext,"更换头像",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:

@@ -34,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
                 break;
         }
         return true;
@@ -109,6 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     intent.putExtra("Login Success", true);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
                 }
             }
         });
@@ -118,5 +120,6 @@ public class RegisterActivity extends AppCompatActivity {
         Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
         startActivity(intent);
         finish();
+        overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
     }
 }

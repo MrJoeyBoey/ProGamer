@@ -116,6 +116,7 @@ public class GamesActivity extends AppCompatActivity {
                 Intent intent1=new Intent(GamesActivity.this,GameVideoActivity.class);
                 intent1.putExtra("GameStra",gameVideo);
                 startActivity(intent1);
+                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
             }
         });
         btn_colect.setOnClickListener(new View.OnClickListener() {
@@ -163,6 +164,7 @@ public class GamesActivity extends AppCompatActivity {
                     startActivity(intent1);
                 }
                 finish();
+                overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
                 return true;
         }
         return super.onOptionsItemSelected(item);

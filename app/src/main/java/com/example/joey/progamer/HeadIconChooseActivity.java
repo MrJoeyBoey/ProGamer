@@ -27,6 +27,7 @@ public class HeadIconChooseActivity extends AppCompatActivity implements View.On
         switch (item.getItemId()){
             case android.R.id.home:
                 finish();
+                overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
                 break;
             case R.id.headIconSave:
                 Acount acount=new Acount();
@@ -38,7 +39,7 @@ public class HeadIconChooseActivity extends AppCompatActivity implements View.On
                 intent2.putExtra("HeadIconId",headIconId);
                 startActivity(intent2);
                 finish();
-
+                overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
                 break;
         }
         return true;

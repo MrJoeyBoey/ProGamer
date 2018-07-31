@@ -44,12 +44,14 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
                 break;
             case R.id.register:
                 //Toast.makeText(LoginActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
                 Intent intent1=new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(intent1);
                 finish();
+                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_from_left);
                 break;
         }
         return true;
@@ -110,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                             username=text_user.getText().toString();
                             startActivity(intent);
                             finish();
+                            overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
                         }else {
                             Toast.makeText(LoginActivity.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
                             text_passport.setText("");
@@ -131,5 +134,6 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent=new Intent(LoginActivity.this,MainActivity.class);
         startActivity(intent);
         finish();
+        overridePendingTransition(R.anim.slide_in_from_left,R.anim.slide_out_from_right);
     }
 }
